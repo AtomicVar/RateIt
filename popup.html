@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" media="all">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Rate it!</h1>
+        <hr>
+
+        <p>The average score of <span class="host">google.com</span> is:</p>
+        <p class="score_p"><span id="score">4.95</span>/5</p>
+        <p>from <span id="user_n">457</span> users.</p>
+
+        <hr>
+        <p class="prompt">You can now rate it!</p>
+
+        <div class="stars">
+            <input class="star star-5" id="star-5" type="radio" name="star"/>
+            <label class="star star-5" for="star-5"></label>
+            <input class="star star-4" id="star-4" type="radio" name="star"/>
+            <label class="star star-4" for="star-4"></label>
+            <input class="star star-3" id="star-3" type="radio" name="star"/>
+            <label class="star star-3" for="star-3"></label>
+            <input class="star star-2" id="star-2" type="radio" name="star"/>
+            <label class="star star-2" for="star-2"></label>
+            <input class="star star-1" id="star-1" type="radio" name="star"/>
+            <label class="star star-1" for="star-1"></label>
+        </div>
+
+        <button class="btn btn-outline-success btn-block" id="submit">Rate It!</button>
+        <p id="tips">Status> <span class="ready">Ready</span>.</p>
+        <script src="popup.js"></script>
+    </div>
+</body>
+</html>
