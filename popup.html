@@ -10,12 +10,12 @@
         <h1 class="title">Rate it!</h1>
         <hr>
 
-        <p>The average score of <span class="host">google.com</span> is:</p>
-        <p class="score_p"><span id="score">4.95</span>/5</p>
-        <p>from <span id="user_n">457</span> users.</p>
+        <p>The average score of <span class="host" id="host"></span> is:</p>
+        <p class="score_p"><span id="score">-.--</span>/5</p>
+        <p>from <span id="user_n">-</span> users.</p>
 
         <hr>
-        <p class="prompt">You can now rate it!</p>
+        <p class="prompt">Rate it to see its score:</p>
 
         <div class="stars">
             <input class="star star-5" id="star-5" type="radio" name="star"/>
@@ -31,7 +31,7 @@
         </div>
 
         <button class="btn btn-outline-success btn-block" id="submit">Rate It!</button>
-        <p id="tips">Status> <span class="ready">Ready</span>.</p>
+        <p id="tips">Status> <span class="ready" id="status">Ready</span>.</p>
         <script src="popup.js"></script>
     </div>
 </body>

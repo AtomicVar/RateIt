@@ -2,7 +2,7 @@
     "name": "RateIt",
     "version": "1.0",
     "description": "Rate the site.",
-    "permissions": ["declarativeContent", "storage"],
+    "permissions": ["declarativeContent", "storage", "http://95.179.143.156/", "http://127.0.0.1/", "tabs"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false

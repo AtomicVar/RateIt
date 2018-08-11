@@ -1,39 +1,54 @@
-function postScore(){
+function postScore() {
     let radios = document.querySelectorAll('input.star');
     for (let i = 0; i < 5; i++) {
         if (radios[i].checked == true) {
-            let score = i + 1;
-            let uid = 'xxx';
-            let url = 'https://127.0.0.1:3001';
-            let data = {
-                uid,
-                score
-            };
+            let score = 5 - i;
+            let url = 'http://95.179.143.156:3000/postScore';
+            let query = { active: true, currentWindow: true };
+            chrome.tabs.query(query, (tabs) => {
+                let data = {
+                    host: getHostFromUrl(tabs[0].url),
+                    score
+                };
 
-            fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
-            }).then(res => {
-                resObj = res.json();
-                if (resObj.status == true) {
-                    let status = document.getElementById("status");
-                    status.innerHTML = 'Upload OK!';
-                    status.className = 'success';
-                } else {
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        let score = document.getElementById("score");
+                        let user_n = document.getElementById("user_n");
+                        score.innerHTML = JSON.parse(xhr.responseText).score;
+                        user_n.innerHTML = JSON.parse(xhr.responseText).count;
+                        let status = document.getElementById("status");
+                        status.innerHTML = "Upload OK.";
+                    }
+                    else {
+                        let status = document.getElementById("status");
+                        status.innerHTML = "Sending your score...";
+                    }
+                };
 
-                }
-            }).catch(e => console.log('Error: ' + e));
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(JSON.stringify(data));
+            });
         }
+
     }
 
     // Submit without checking
 }
 
-function getScore(){
+function getScore() {
+    let query = { active: true, currentWindow: true };
+    chrome.tabs.query(query, (tabs) => {
+        let host = document.getElementById("host");
+        host.innerHTML = getHostFromUrl(tabs[0].url);
+    });
 }
 
-document.addEventListener('DOMContentLoaded', getScore);
+function getHostFromUrl(url) {
+    return url.match(/(?<=\/\/).*?(?=\/)/g)[0];
+}
+
+window.onload = getScore;
 document.getElementById('submit').addEventListener('click', postScore);
