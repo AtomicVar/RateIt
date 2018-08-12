@@ -8,8 +8,8 @@ A web extension for rating any websites.
 
 ## Screenshot
 
-![](https://wx3.sinaimg.cn/mw1024/8163951ely1fu6a52i8cvj20920eo3yx.jpg)
+![Screenshot](https://wx3.sinaimg.cn/mw1024/8163951ely1fu6a52i8cvj20920eo3yx.jpg)
 
 ## Download
 
-To be done...
+Demo: [rate.zip](https://github.com/ZJUGuoShuai/RateIt/files/2280756/rate.zip)
