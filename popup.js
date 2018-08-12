@@ -72,6 +72,11 @@ function getScore() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 avgScore = JSON.parse(xhr.responseText).score;
+                if (avgScore == null) {
+                    eStatus.innerHTML = "No score fetched.";
+                    eStatus.style.color = "purple";
+                    return;
+                }
                 eScore.innerHTML = avgScore.toFixed(2);
                 eUserNum.innerHTML = JSON.parse(xhr.responseText).count;
                 eStatus.innerHTML = "Ready.";
