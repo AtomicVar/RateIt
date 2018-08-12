@@ -14,7 +14,7 @@
         "persistent": false
     },
     "page_action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup/popup.html"
     },
     "manifest_version": 2
 }
