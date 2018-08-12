@@ -50,5 +50,4 @@ function getHostFromUrl(url) {
     return url.match(/(?<=\/\/).*?(?=\/)/g)[0];
 }
 
-window.onload = getScore;
 document.getElementById('submit').addEventListener('click', postScore);
