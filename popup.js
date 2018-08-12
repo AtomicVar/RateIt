@@ -27,7 +27,7 @@ function postScore() {
                         eStatus.innerHTML = "Upload OK.";
                         eStatus.style.color = "green";
 
-                        if (avgScore>= 4) {
+                        if (avgScore >= 4) {
                             eScore.style.color = "green";
                         } else if (avgScore >= 2) {
                             eScore.style.color = "orange";
@@ -55,10 +55,45 @@ function postScore() {
 }
 
 function getScore() {
+    let url = 'http://95.179.143.156:3000/getScore';
     let query = { active: true, currentWindow: true };
+    let eStatus = document.getElementById("status");
+    let eScore = document.getElementById("score");
+    let eUserNum = document.getElementById("user_n");
     chrome.tabs.query(query, (tabs) => {
-        let host = document.getElementById("host");
-        host.innerHTML = getHostFromUrl(tabs[0].url);
+        let eHost = document.getElementById("host");
+        eHost.innerHTML = getHostFromUrl(tabs[0].url);
+
+        let data = {
+            host: getHostFromUrl(tabs[0].url),
+        };
+
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                avgScore = JSON.parse(xhr.responseText).score;
+                eScore.innerHTML = avgScore.toFixed(2);
+                eUserNum.innerHTML = JSON.parse(xhr.responseText).count;
+                eStatus.innerHTML = "Ready.";
+                eStatus.style.color = "green";
+
+                if (avgScore >= 4) {
+                    eScore.style.color = "green";
+                } else if (avgScore >= 2) {
+                    eScore.style.color = "orange";
+                } else {
+                    eScore.style.color = "red";
+                }
+            }
+            else {
+                eStatus.innerHTML = "Fetching newest score...";
+                eStatus.style.color = "blue";
+            }
+        };
+
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(data));
     });
 }
 
