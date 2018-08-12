@@ -12,4 +12,4 @@ A web extension for rating any websites.
 
 ## Download
 
-Demo: [rate.zip](https://github.com/ZJUGuoShuai/RateIt/files/2280756/rate.zip)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/rateit/ieeacbmdhgpdflmffnecdpodjdhgiccl?utm_source=chrome-ntp-icon)
