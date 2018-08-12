@@ -103,7 +103,7 @@ function getScore() {
 }
 
 function getHostFromUrl(url) {
-    return url.match(/(?<=\/\/).*?(?=\/)/g)[0];
+    return url.match(/[^\/]*\.[^\/]*/)[0];
 }
 
 window.onload = getScore;
