@@ -1,7 +1,14 @@
+// Naming conventions:
+// eXxx: HTMLElement Object
+
 function postScore() {
-    let radios = document.querySelectorAll('input.star');
+    let eRadios = document.querySelectorAll('input.star');
+    let eScore = document.getElementById("score");
+    let eUserNum = document.getElementById("user_n");
+    let eStatus = document.getElementById("status");
+
     for (let i = 0; i < 5; i++) {
-        if (radios[i].checked == true) {
+        if (eRadios[i].checked == true) {
             let score = 5 - i;
             let url = 'http://95.179.143.156:3000/postScore';
             let query = { active: true, currentWindow: true };
@@ -14,16 +21,23 @@ function postScore() {
                 let xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
-                        let score = document.getElementById("score");
-                        let user_n = document.getElementById("user_n");
-                        score.innerHTML = JSON.parse(xhr.responseText).score;
-                        user_n.innerHTML = JSON.parse(xhr.responseText).count;
-                        let status = document.getElementById("status");
-                        status.innerHTML = "Upload OK.";
+                        avgScore = JSON.parse(xhr.responseText).score;
+                        eScore.innerHTML = avgScore.toFixed(2);
+                        eUserNum.innerHTML = JSON.parse(xhr.responseText).count;
+                        eStatus.innerHTML = "Upload OK.";
+                        eStatus.style.color = "green";
+
+                        if (avgScore>= 4) {
+                            eScore.style.color = "green";
+                        } else if (avgScore >= 2) {
+                            eScore.style.color = "orange";
+                        } else {
+                            eScore.style.color = "red";
+                        }
                     }
                     else {
-                        let status = document.getElementById("status");
-                        status.innerHTML = "Sending your score...";
+                        eStatus.innerHTML = "Sending your score...";
+                        eStatus.style.color = "blue";
                     }
                 };
 
@@ -36,6 +50,8 @@ function postScore() {
     }
 
     // Submit without checking
+    eStatus.innerHTML = "Error: you should select the score first.";
+    eStatus.style.color = "red";
 }
 
 function getScore() {
@@ -50,4 +66,5 @@ function getHostFromUrl(url) {
     return url.match(/(?<=\/\/).*?(?=\/)/g)[0];
 }
 
+window.onload = getScore;
 document.getElementById('submit').addEventListener('click', postScore);
