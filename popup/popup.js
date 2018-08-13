@@ -45,6 +45,7 @@ function postScore() {
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(JSON.stringify(data));
             });
+            return;
         }
 
     }
