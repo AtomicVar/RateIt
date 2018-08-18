@@ -15,3 +15,9 @@ A web extension for rating any websites.
 ## Port for Firefox
 
 [RateIt_ff](https://github.com/ZJUGuoShuai/RateIt_ff)
+
+## Implementation
+
+It now uses IP address to distinguish "an user" from another. "An user" has only one score record for one host in database. Submitting a new score will override the old one.
+
+The backend implementation cannot be open-sourced recently.
