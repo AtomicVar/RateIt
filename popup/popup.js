@@ -10,7 +10,7 @@ function postScore() {
     for (let i = 0; i < 5; i++) {
         if (eRadios[i].checked == true) {
             let score = 5 - i;
-            let url = 'http://95.179.143.156:3000/postScore';
+            let url = 'http://45.76.220.82:3000/postScore';
             let query = { active: true, currentWindow: true };
             chrome.tabs.query(query, (tabs) => {
                 let data = {
@@ -56,7 +56,7 @@ function postScore() {
 }
 
 function getScore() {
-    let url = 'http://95.179.143.156:3000/getScore';
+    let url = 'http://45.76.220.82:3000/getScore';
     let query = { active: true, currentWindow: true };
     let eStatus = document.getElementById("status");
     let eScore = document.getElementById("score");
