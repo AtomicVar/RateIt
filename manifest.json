@@ -1,6 +1,6 @@
 {
     "name": "RateIt",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Rate the site.",
 	"icons": {
       "16": "icons/icon16.png",
